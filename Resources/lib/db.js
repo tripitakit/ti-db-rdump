@@ -23,7 +23,36 @@ exports.install = function(options){
 
 
 // Dump the db into a json object
-exports.dump = function(){};
+exports.dump = function(db){
+
+	// TODO
+	// Dump should iterate over a tables array, 
+	// and build the table propertiy dynamicllay.
+	// Here a shortcut is taken, hardcoding the single table people.
+	var people = [];
+	var rows = db.execute('SELECT * FROM people');
+
+	while (rows.isValidRow()){
+		var record = {
+			firstname: rows.fieldByName('firstname'),
+			lastanme: rows.fieldByName('lastname')
+		 }
+	  people.push(record)
+	  rows.next();
+	}
+	rows.close();
+	db.close();
+	
+	var dbDump {
+	  db: "dbtest",
+	  tables: {
+	    people: people
+	  }
+	};
+
+	return dbDump;
+	
+};
 
 
 // Post a dbDump json objetc to remote server

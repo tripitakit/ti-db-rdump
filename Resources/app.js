@@ -16,8 +16,13 @@ var DB = require('lib/db');
 DB.install({
 	success: function(db){
 		Ti.API.info("Db successfully installed with name: " + db.name);
+		
+		var dbDump = DB.dump(db)
+		Ti.API.info(JSON.stringify(dbDump));
 	},
 	error: function(err){
 		Ti.API.info(err +  ". Db not installed")
 	},
 });
+
+
