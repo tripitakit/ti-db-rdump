@@ -35,7 +35,7 @@ exports.dump = function(db){
 	while (rows.isValidRow()){
 		var record = {
 			firstname: rows.fieldByName('firstname'),
-			lastanme: rows.fieldByName('lastname')
+			lastname: rows.fieldByName('lastname')
 		 }
 	  people.push(record)
 	  rows.next();
