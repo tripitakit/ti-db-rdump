@@ -27,7 +27,7 @@ exports.dump = function(db){
 
 	// TODO
 	// Dump should iterate over a tables array, 
-	// and build the table propertiy dynamicllay.
+	// and build the table propertiy dynamically.
 	// Here a shortcut is taken, hardcoding the single table people.
 	var people = [];
 	var rows = db.execute('SELECT * FROM people');
