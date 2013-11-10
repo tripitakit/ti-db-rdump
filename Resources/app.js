@@ -20,9 +20,7 @@ DB.install({
 		var dbDump = DB.dump(db)
 		Ti.API.info(JSON.stringify(dbDump));
 		
-		var payload = JSON.stringify(dbDump);
-		
-		DB.push(payload,
+		DB.push(dbDump,
 			function(response){
 				Ti.API.info(response)
 			},

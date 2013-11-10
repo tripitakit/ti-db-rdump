@@ -34,8 +34,8 @@ exports.dump = function(db){
 
 	while (rows.isValidRow()){
 		var record = {
-			firstname: rows.fieldByName('firstname'),
-			lastname: rows.fieldByName('lastname')
+			"firstname": rows.fieldByName('firstname'),
+			"lastname": rows.fieldByName('lastname')
 		 }
 	  people.push(record)
 	  rows.next();
@@ -47,9 +47,9 @@ exports.dump = function(db){
 	
 	var dbDump = {}
 	dbDump[now] = {
-	  db: "dbtest",
+	  db: "dbtest",	
 	  tables: {
-	    people: people
+	    people: people,
 	  }
 	};
 	return dbDump;
@@ -60,6 +60,7 @@ exports.dump = function(db){
 exports.push = function(payload, callback){
 	var url = "http://pumbaa.iosvappo.it/BrBa"
 	var client = Ti.Network.createHTTPClient({
+		
 		onload: function(e) {
 			if (callback) callback(this.responseText, null);
 		},
@@ -68,6 +69,7 @@ exports.push = function(payload, callback){
 		},
 		timeout : 10000
 	});
+	client.setRequestHeader("Content-Type", "application/json"); 
 	client.open('POST', url);
 	client.send(payload);
 };
