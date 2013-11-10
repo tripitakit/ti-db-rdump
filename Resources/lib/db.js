@@ -49,15 +49,23 @@ exports.dump = function(db){
 	    people: people
 	  }
 	};
-
 	return dbDump;
-	
 };
 
 
 // Post a dbDump json objetc to remote server
-exports.push = function(){};
-
-
-
+exports.push = function(payload, callback){
+	var url = "http://pumbaa.iosvappo.it/docs"
+	var client = Ti.Network.createHTTPClient({
+		onload: function(e) {
+			if (callback) callback(this.responseText, null);
+		},
+		onerror: function(e) {
+			if (callback) callback(this.responseText, e.error);
+		},
+		timeout : 10000
+	});
+	client.open('POST', url);
+	client.send(payload);
+};
 

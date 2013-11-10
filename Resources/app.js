@@ -19,6 +19,17 @@ DB.install({
 		
 		var dbDump = DB.dump(db)
 		Ti.API.info(JSON.stringify(dbDump));
+		
+		DB.push(dbDump,
+			function(response){
+				Ti.API.info(response)
+			},
+			function(error){
+				Ti.API.info(error)
+			}
+		);
+		
+		
 	},
 	error: function(err){
 		Ti.API.info(err +  ". Db not installed")
