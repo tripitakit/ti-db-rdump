@@ -9,14 +9,15 @@
 
 'use strict'
 
-var DB = require('db');
+// Dependencies
+var DB = require('lib/db');
 
-var win = Titanium.UI.createWindow({  
-    backgroundColor:'#fff'
+
+DB.install({
+	success: function(db){
+		Ti.API.info("Db successfully installed with name: " + db.name);
+	},
+	error: function(err){
+		Ti.API.info(err +  ". Db not installed")
+	},
 });
-
-DB.install();
-
-
-
-win.open();
