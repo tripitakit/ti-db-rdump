@@ -55,7 +55,7 @@ exports.dump = function(db){
 
 // Post a dbDump json objetc to remote server
 exports.push = function(payload, callback){
-	var url = "http://pumbaa.iosvappo.it/docs"
+	var url = "http://pumbaa.iosvappo.it/BrBa"
 	var client = Ti.Network.createHTTPClient({
 		onload: function(e) {
 			if (callback) callback(this.responseText, null);
