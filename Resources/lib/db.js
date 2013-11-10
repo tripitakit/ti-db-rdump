@@ -43,7 +43,7 @@ exports.dump = function(db){
 	rows.close();
 	db.close();
 	
-	var dbDump {
+	var dbDump = {
 	  db: "dbtest",
 	  tables: {
 	    people: people
