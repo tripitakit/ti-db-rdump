@@ -8,8 +8,7 @@
 
 // Install the db and return a Ti.Database.DB in the success callback 
 exports.install = function(options){
-	var success, error;
-	
+
 	try {
 		var db = Ti.Database.install('db/dbtest', 'db');
 		options.success(db)
