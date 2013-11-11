@@ -57,20 +57,19 @@ exports.dump = function(db){
 
 
 // Post a dbDump json objetc to remote server
-exports.push = function(payload, callback){
+exports.push = function(options){
 	var url = "http://pumbaa.iosvappo.it/BrBa"
 	var client = Ti.Network.createHTTPClient({
-		
-		onload: function(e) {
-			if (callback) callback(this.responseText, null);
+		onload: function() {
+			options.success(this.responseText);
 		},
 		onerror: function(e) {
-			if (callback) callback(this.responseText, e.error);
+			options.error(this.responseText, e.error);
 		},
 		timeout : 10000
 	});
 	client.setRequestHeader("Content-Type", "application/json"); 
 	client.open('POST', url);
-	client.send(payload);
+	client.send(options.payload);
 };
 

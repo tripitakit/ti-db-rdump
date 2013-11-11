@@ -12,22 +12,24 @@
 // Dependencies
 var DB = require('lib/db');
 
-
 DB.install({
 	success: function(db){
 		Ti.API.info("Db successfully installed with name: " + db.name);
 		
+		// Db's JSON dump
 		var dbDump = DB.dump(db)
-		Ti.API.info(JSON.stringify(dbDump));
 		
-		DB.push(dbDump,
-			function(response){
-				Ti.API.info(response)
+		// Push dump to server
+		DB.push({
+			payload: dbDump,
+			success: function(response){
+				Ti.API.info("Db successfully pushed to server: " + response)
 			},
-			function(error){
-				Ti.API.info(error)
+			errror: function(response, err){
+				Ti.API.info("An error occurred: " + err);
+				Ti.API.info("Server reponded: " + response)
 			}
-		);
+		});
 	},
 
 	error: function(err){
