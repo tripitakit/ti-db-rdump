@@ -15,7 +15,6 @@ exports.install = function(options){
 
 	} catch(err) {
 		options.error(err)
-		Ti.API.debug(err)
 	}
 
 };
